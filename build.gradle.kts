@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.5.30"
+    kotlin("kapt") version "1.5.30"
 }
 
 group = "net.yakclient"
@@ -8,9 +9,12 @@ version = "1.0-SNAPSHOT"
 tasks.wrapper {
     gradleVersion = "7.2"
 }
-
+//kapt {
+//    keepJavacAnnotationProcessors = true
+//}
 allprojects {
     apply(plugin="org.jetbrains.kotlin.jvm")
+    apply(plugin="kotlin-kapt")
 
     kotlin {
         explicitApi()
@@ -27,7 +31,7 @@ allprojects {
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 
         implementation("io.github.emilyy-dev:annotated-service-provider:1.0.1")
-        annotationProcessor("io.github.emilyy-dev:annotated-service-provider:1.0.1")
+        kapt("io.github.emilyy-dev:annotated-service-provider:1.0.1")
     }
 
     tasks.compileKotlin {
